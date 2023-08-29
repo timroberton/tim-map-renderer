@@ -1,0 +1,13 @@
+{
+  "module": "./esm/mod.js",
+  "name": "tim-map-renderer",
+  "version": "0.0.1",
+  "exports": {
+    ".": {
+      "import": "./esm/mod.js"
+    }
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.9"
+  }
+}
