@@ -1,26 +1,12 @@
-import { Canvas } from "./deps.ts";
-
-export function renderMap(
-  canvas: Canvas,
-  popBinData: Uint8Array,
-  opts: {
-    mapPixelW: number;
-    mapPixelH: number;
-    mapPixelPad: number;
-  }
-) {
+// src/render_map.ts
+function renderMap(canvas, popBinData, opts) {
   console.log("Rendering map x", canvas.width, canvas.height);
-
   const ctx = canvas.getContext("2d");
-
   const imageData = ctx.createImageData(opts.mapPixelW, opts.mapPixelH);
-
   if (popBinData.length !== imageData.width * imageData.height) {
     throw new Error("Not same length");
   }
-
   const popColorRgb = [240, 34, 156, 140];
-
   for (let iPix = 0; iPix < popBinData.length; iPix++) {
     if (popBinData[iPix] === 255) {
       continue;
@@ -31,6 +17,8 @@ export function renderMap(
     imageData.data[iImgData + 2] = popColorRgb[2];
     imageData.data[iImgData + 3] = popBinData[iPix];
   }
-
   ctx.putImageData(imageData, opts.mapPixelPad, opts.mapPixelPad);
 }
+export {
+  renderMap
+};
